@@ -1,0 +1,48 @@
+INSTRUCTIONS FOR CREATING A MAP OF A SIMULATED ENVIRONMENT WITH TURTLEBOT3_burger
+By LB
+
+NOTE: you can omit the first line (source /opt/ros/noetic/setup.bash) if you have included it in the default bash script
+
+
+GAZEBO BIG HOUSE SIMULATION:
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_big_house turtlebot3_big_house.launch
+
+RVIZ (optional):
+rviz // add > LaserScan, TF, RobotModel
+
+SLAM NODE (this also starts rviz):
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping
+
+TELEOP KEY NODE (optional instead of explore lite):
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
+
+EXPLORE LITE (requires move base server to move the robot):
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+roslaunch explore_lite explore.launch
+
+EXPLORE LITE CUSTOM (requires move base server to move the robot):
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+roslaunch explore_lite_custom explore.launch
+
+MOVE BASE SERVER:
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_navigation move_base.launch
+
+SAVE MAP:
+source /opt/ros/noetic/setup.bash
+rosrun map_server map_saver -f ~/map

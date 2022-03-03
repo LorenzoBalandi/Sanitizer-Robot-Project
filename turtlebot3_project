@@ -1,0 +1,72 @@
+COMMANDS FOR AMR PROJECT
+Balandi, Bamundo, January 2022
+
+------------------------------------- TASK 1 -------------------------------------
+
+GAZEBO BIG HOUSE SIMULATION (don't run this if you are using the real robot and not the Gazebo simulation):
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_big_house turtlebot3_big_house.launch
+
+RUN NAVIGATION NODE(s) (it starts amcl and move_base):
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
+
+------------------------------------- TASK 2 -------------------------------------
+
+See "turtlebot3_map_creation" for instructions.
+
+
+------------------------------------- TASK 3 -------------------------------------
+NODE FOR LOCALIZATION:
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+rosrun turtlebot3_project_localization turtlebot3_project_localization
+
+NODE FOR READING GOALS FROM TEXT FILE AND REACHING THEM:
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+rosrun turtlebot3_project_navigation turtlebot3_project_navigation_textfile.py
+
+------------------------------------- TASK 4 -------------------------------------
+
+NODE THAT SEND THE POSITION OF THE ROBOT IN MAP FRAME:
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+rosrun turtlebot3_project_navigation turtlebot3_project_pose
+
+NODE FOR COMPUTATION AND REPRESENTATION OF THE ENERGY:
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+rosrun turtlebot3_project_navigation turtlebot3_project_energy_cv.py
+
+NODE FOR ROOMS DETECTION AND NAVIGATION:
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+rosrun turtlebot3_project_navigation turtlebot3_project_navigation_energy.py
+
+------------------------------------- Project_house environment -------------------------------------
+
+GAZEBO PROJECT HOUSE SIMULATION (don't run this if you are using the real robot and not the Gazebo simulation):
+source /opt/ros/noetic/setup.bash
+cd turtle_ws
+source devel/setup.bash
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_project_house turtlebot3_project_house.launch
+
+MODIFY THE FOLLOWING PARTS IN THE CODE:
+-Uncomment coordinate transformation in energy_cv
+-Uncomment the clearing of the costmap in navigation_energy
+-Uncomment the inverse coordinate transformation in navigation_energy
+-Uncomment the coordinate transformation in the new goals callback in navigation_energy
+-Modify the kernel size in navigation_energy from 3 to 5
+
