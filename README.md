@@ -2,7 +2,7 @@
 Control of an autonomous mobile robot that has to perform some tasks in the **Turtlebot3** simulation environment using **ROS Noetic**. Course project of *Autonomous and Mobile Robotics* course at University of Bologna. Team members: Lorenzo Balandi, Salvatore Bamundo (https://github.com/Salvatore1999).
 
 This repository includes:
-* ROS packages used and developed for the project (Python and C++)
+* ROS packages used and developed for the project (Python and C++). *turtlebot3_big_house*  and *turtlebot3_project_house* are gazebo environments
 * 2 textfiles containing the commands to be runned on multiple terminals to launch simulation and nodes
 * Jupyter Notebooks used to manipulate the map image and to test the *room detection algorithm* and the algorithms used to find new goals to complete the map sanification
 * final presentation.
